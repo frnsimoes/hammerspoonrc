@@ -1,8 +1,8 @@
 -- Define the workspaces and the apps they contain
-local workspace1 = {"iTerm", "Firefox"}
+local workspace1 = {"iTerm", "Chromium"}
 local workspace2 = {"Google Chrome"}
 local workspace3 = {"Spotify"}
-local workspace6 = {"Telegram"}
+local workspace6 = {"Telegram", "Firefox"}
 
 
 local function simulateKeystroke(appObject, key)
@@ -29,11 +29,7 @@ end
 
 -- Modify the applicationWatcher function
 local function applicationWatcher(appName, eventType, appObject)
-    if (eventType == hs.application.watcher.launched) then
-        if isInTable(workspace1, appName) then
-            simulateKeystroke(appObject, "q")
-	elseif isInTable(workspace2, appName) then
-	    simulateKeystroke(appObject, "w")
+    if (eventType == hs.application.watcher.launched) then if isInTable(workspace1, appName) then simulateKeystroke(appObject, "q") elseif isInTable(workspace2, appName) then simulateKeystroke(appObject, "w")
 	elseif isInTable(workspace3, appName) then
 	    simulateKeystroke(appObject, "e")
         elseif isInTable(workspace6, appName) then
